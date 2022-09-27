@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Samples/Mixed Reality Toolkit Examples/2.8.2/Demos - StandardShader/Scenes/ClippingExamples.unity
+    guid: e532091edada3e04aa706112e8d5f310
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e1c4377e29d6f344c8d58b1b9b26be60, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 627830914200f8c4fb4d022b8b211de8, type: 2}
