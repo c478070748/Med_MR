@@ -1,10 +1,11 @@
-ï»¿using System.Collections;
+using Microsoft.MixedReality.Toolkit.UI;
+using Microsoft.MixedReality.Toolkit.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class questionSystem3 : MonoBehaviour
+public class QuestionSystem6_4 : MonoBehaviour
 {
     public int[] questionList;
 
@@ -23,24 +24,34 @@ public class questionSystem3 : MonoBehaviour
 
     private Vector3 startPos;
 
-    public GameObject target;
+    //public GameObject answer;
+
+    public GameObject[] options;
+
+    public int errorRate;
+
+    int rightOptionIndex;
+
+    public GameObject selections;
 
     void Start()
     {
 
-        target.SetActive(false);
+        Init();
 
-        //åˆ¤æ–­æ˜¯å¦å­˜åœ¨æŸä¸ªæ–‡ä»¶å¤¹
+        
+
+        //ÅĞ¶ÏÊÇ·ñ´æÔÚÄ³¸öÎÄ¼ş¼Ğ
         if (Directory.Exists(localPath))
         {
             DirectoryInfo direction = new DirectoryInfo(localPath);
-            files = direction.GetFiles("*.jpg");        //åŠ è½½ä»€ä¹ˆç±»å‹çš„æ–‡ä»¶
+            files = direction.GetFiles("*.jpg");        //¼ÓÔØÊ²Ã´ÀàĞÍµÄÎÄ¼ş
             //Debug.Log(files.Length);
 
             total = files.Length;
             textures = new Texture2D[total];
 
-            //localPath + "/" + files[index].Name   : ç”¨äºå¾—åˆ°æ–‡ä»¶çš„è·¯å¾„
+            //localPath + "/" + files[index].Name   : ÓÃÓÚµÃµ½ÎÄ¼şµÄÂ·¾¶
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -52,25 +63,39 @@ public class questionSystem3 : MonoBehaviour
         }
     }
 
+    void Init()
+    {
+        
+        GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
+
+
+        foreach (GameObject model in models)
+        {
+            plane.GetComponent<ClippingPlane>().AddRenderer(model.GetComponent<MeshRenderer>());
+            
+        }
+        
+    }
+
 
     IEnumerator Load(string url, int i)
     {
         double startTime = (double)Time.time;
-        //è¯·æ±‚WWW
+        //ÇëÇóWWW
         WWW www = new WWW(url);
 
         yield return www;
         if (www != null && string.IsNullOrEmpty(www.error))
         {
-            //è·å–Texture
+            //»ñÈ¡Texture
             textures[i] = www.texture;
 
             startTime = (double)Time.time - startTime;
-            //Debug.Log("wwwåŠ è½½ç”¨æ—¶ ï¼š " + startTime);
+            //Debug.Log("www¼ÓÔØÓÃÊ± £º " + startTime);
 
         }
 
-        
+
 
     }
 
@@ -94,11 +119,14 @@ public class questionSystem3 : MonoBehaviour
 
     void setQuestion(int index)
     {
+        //µ÷ÕûÃæ°åÌùÍ¼
         //Debug.Log(questionList[index]);
-        plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
+        //plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
 
 
-        Vector3 direction = plane.transform.up;
+        
+        //µ÷ÕûÃæ°åÎ»ÖÃ
+        Vector3 direction = -plane.transform.up;
         float offset = questionList[curIndex];
         if (curIndex != 0)
             offset = (questionList[curIndex] - questionList[preIndex]);
@@ -107,15 +135,36 @@ public class questionSystem3 : MonoBehaviour
         plane.transform.position += direction * offset;
 
 
-        target.transform.SetParent(plane.transform);
+        sendOptions(questionList[curIndex], total);
+        
+    }
 
-        float x = 0;
-        float y = Random.Range(0, 360);
-        float z = 0;
-        plane.transform.Rotate(new Vector3(x, y, z));
+    public void sendOptions(int index, int total)
+    {
+        int left = Mathf.Max(index - errorRate, 0);
+        int right = Mathf.Min(index + errorRate, total);
+        int len = right - left;
+
+        rightOptionIndex = Random.Range(0, 4);
+
+        for (int i = 0; i < options.Length; i++)
+        {
+            Renderer pic = options[i].transform.Find("pic").GetComponent<Renderer>();
+            if (i == rightOptionIndex)
+            {
+                pic.material.SetTexture("_MainTex", textures[index]);
+                
+            }
+            else
+            {
+                int cur = Random.Range(0, total - len);
+                cur = cur <= left ? cur : cur + len;
+
+                pic.material.SetTexture("_MainTex", textures[cur]);
+            }
+        }
 
 
-        target.transform.SetParent(transform);
     }
 
     public void commit()
@@ -123,8 +172,10 @@ public class questionSystem3 : MonoBehaviour
         if (Global.status2 == Status2.giveAnswer)
         {
 
-            target.SetActive(true);
+            selections.GetComponent<ButtonClick6_4>().showAnwser(rightOptionIndex);
+
             
+
 
             Global.status2 = Status2.Check;
         }
@@ -135,17 +186,25 @@ public class questionSystem3 : MonoBehaviour
     public void start()
     {
         if (isLoaded == false)
+        {
             isLoaded = true;
+
+            
+
+            
+        }
+            
     }
 
     public void next()
     {
-        
+
 
         if (Global.status2 == Status2.Check)
         {
+            selections.GetComponent<ButtonClick6_4>().clearColor();
 
-            target.SetActive(false);
+          
 
             curIndex++;
             Global.status2 = Status2.SetQuestion;

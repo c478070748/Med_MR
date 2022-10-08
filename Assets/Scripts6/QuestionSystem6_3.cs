@@ -1,10 +1,11 @@
-ï»¿using System.Collections;
+using Microsoft.MixedReality.Toolkit.UI;
+using Microsoft.MixedReality.Toolkit.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class questionSystem3 : MonoBehaviour
+public class QuestionSystem6_3 : MonoBehaviour
 {
     public int[] questionList;
 
@@ -23,24 +24,28 @@ public class questionSystem3 : MonoBehaviour
 
     private Vector3 startPos;
 
-    public GameObject target;
+    public GameObject answer;
+
+    public GameObject submit;
 
     void Start()
     {
 
-        target.SetActive(false);
+        Init();
 
-        //åˆ¤æ–­æ˜¯å¦å­˜åœ¨æŸä¸ªæ–‡ä»¶å¤¹
+        
+
+        //ÅĞ¶ÏÊÇ·ñ´æÔÚÄ³¸öÎÄ¼ş¼Ğ
         if (Directory.Exists(localPath))
         {
             DirectoryInfo direction = new DirectoryInfo(localPath);
-            files = direction.GetFiles("*.jpg");        //åŠ è½½ä»€ä¹ˆç±»å‹çš„æ–‡ä»¶
+            files = direction.GetFiles("*.jpg");        //¼ÓÔØÊ²Ã´ÀàĞÍµÄÎÄ¼ş
             //Debug.Log(files.Length);
 
             total = files.Length;
             textures = new Texture2D[total];
 
-            //localPath + "/" + files[index].Name   : ç”¨äºå¾—åˆ°æ–‡ä»¶çš„è·¯å¾„
+            //localPath + "/" + files[index].Name   : ÓÃÓÚµÃµ½ÎÄ¼şµÄÂ·¾¶
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -52,25 +57,42 @@ public class questionSystem3 : MonoBehaviour
         }
     }
 
+    void Init()
+    {
+        
+        GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
+
+
+        foreach (GameObject model in models)
+        {
+            answer.GetComponent<ClippingPlane>().AddRenderer(model.GetComponent<MeshRenderer>());
+            submit.GetComponent<ClippingPlane>().AddRenderer(model.GetComponent<MeshRenderer>());
+            
+        }
+
+
+        answer.SetActive(false);
+    }
+
 
     IEnumerator Load(string url, int i)
     {
         double startTime = (double)Time.time;
-        //è¯·æ±‚WWW
+        //ÇëÇóWWW
         WWW www = new WWW(url);
 
         yield return www;
         if (www != null && string.IsNullOrEmpty(www.error))
         {
-            //è·å–Texture
+            //»ñÈ¡Texture
             textures[i] = www.texture;
 
             startTime = (double)Time.time - startTime;
-            //Debug.Log("wwwåŠ è½½ç”¨æ—¶ ï¼š " + startTime);
+            //Debug.Log("www¼ÓÔØÓÃÊ± £º " + startTime);
 
         }
 
-        
+
 
     }
 
@@ -94,37 +116,37 @@ public class questionSystem3 : MonoBehaviour
 
     void setQuestion(int index)
     {
+        //µ÷ÕûÃæ°åÌùÍ¼
         //Debug.Log(questionList[index]);
         plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
 
 
-        Vector3 direction = plane.transform.up;
+        
+        //µ÷Õû´ğ°¸Î»ÖÃ
+        Vector3 direction = -answer.transform.up;
         float offset = questionList[curIndex];
         if (curIndex != 0)
             offset = (questionList[curIndex] - questionList[preIndex]);
 
         offset *= 0.01f;
-        plane.transform.position += direction * offset;
+        answer.transform.position += direction * offset;
 
 
-        target.transform.SetParent(plane.transform);
-
-        float x = 0;
-        float y = Random.Range(0, 360);
-        float z = 0;
-        plane.transform.Rotate(new Vector3(x, y, z));
-
-
-        target.transform.SetParent(transform);
+        
     }
 
     public void commit()
     {
         if (Global.status2 == Status2.giveAnswer)
         {
+            //È¥³ıÌá½»µÄÇĞ¸îĞ§¹û
+            submit.GetComponent<ClippingPlane>().enabled = false;
+            submit.GetComponent<ObjectManipulator>().enabled = false;
 
-            target.SetActive(true);
-            
+            //ÏÔÊ¾´ğ°¸
+            answer.GetComponent<ClippingPlane>().enabled = true;
+            answer.SetActive(true);
+
 
             Global.status2 = Status2.Check;
         }
@@ -135,17 +157,29 @@ public class questionSystem3 : MonoBehaviour
     public void start()
     {
         if (isLoaded == false)
+        {
             isLoaded = true;
+
+            answer.GetComponent<ClippingPlane>().enabled = false;
+            answer.SetActive(false);
+
+            submit.GetComponent<ClippingPlane>().enabled = true;
+            submit.GetComponent<ObjectManipulator>().enabled = true;
+        }
+            
     }
 
     public void next()
     {
-        
+
 
         if (Global.status2 == Status2.Check)
         {
+            answer.GetComponent<ClippingPlane>().enabled = false;
+            answer.SetActive(false);
 
-            target.SetActive(false);
+            submit.GetComponent<ClippingPlane>().enabled = true;
+            submit.GetComponent<ObjectManipulator>().enabled = true;
 
             curIndex++;
             Global.status2 = Status2.SetQuestion;

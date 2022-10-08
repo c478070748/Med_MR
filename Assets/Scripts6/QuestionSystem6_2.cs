@@ -1,10 +1,9 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class questionSystem3 : MonoBehaviour
+public class QuestionSystem6_2 : MonoBehaviour
 {
     public int[] questionList;
 
@@ -25,22 +24,26 @@ public class questionSystem3 : MonoBehaviour
 
     public GameObject target;
 
+    public GameObject Center;
+
     void Start()
     {
+        Center = GameObject.FindGameObjectWithTag("Center");
+        Center.GetComponent<BoxCollider>().enabled = true;
 
         target.SetActive(false);
 
-        //åˆ¤æ–­æ˜¯å¦å­˜åœ¨æŸä¸ªæ–‡ä»¶å¤¹
+        //ÅĞ¶ÏÊÇ·ñ´æÔÚÄ³¸öÎÄ¼ş¼Ğ
         if (Directory.Exists(localPath))
         {
             DirectoryInfo direction = new DirectoryInfo(localPath);
-            files = direction.GetFiles("*.jpg");        //åŠ è½½ä»€ä¹ˆç±»å‹çš„æ–‡ä»¶
+            files = direction.GetFiles("*.jpg");        //¼ÓÔØÊ²Ã´ÀàĞÍµÄÎÄ¼ş
             //Debug.Log(files.Length);
 
             total = files.Length;
             textures = new Texture2D[total];
 
-            //localPath + "/" + files[index].Name   : ç”¨äºå¾—åˆ°æ–‡ä»¶çš„è·¯å¾„
+            //localPath + "/" + files[index].Name   : ÓÃÓÚµÃµ½ÎÄ¼şµÄÂ·¾¶
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -56,21 +59,21 @@ public class questionSystem3 : MonoBehaviour
     IEnumerator Load(string url, int i)
     {
         double startTime = (double)Time.time;
-        //è¯·æ±‚WWW
+        //ÇëÇóWWW
         WWW www = new WWW(url);
 
         yield return www;
         if (www != null && string.IsNullOrEmpty(www.error))
         {
-            //è·å–Texture
+            //»ñÈ¡Texture
             textures[i] = www.texture;
 
             startTime = (double)Time.time - startTime;
-            //Debug.Log("wwwåŠ è½½ç”¨æ—¶ ï¼š " + startTime);
+            //Debug.Log("www¼ÓÔØÓÃÊ± £º " + startTime);
 
         }
 
-        
+
 
     }
 
@@ -124,7 +127,7 @@ public class questionSystem3 : MonoBehaviour
         {
 
             target.SetActive(true);
-            
+
 
             Global.status2 = Status2.Check;
         }
@@ -140,7 +143,7 @@ public class questionSystem3 : MonoBehaviour
 
     public void next()
     {
-        
+
 
         if (Global.status2 == Status2.Check)
         {
