@@ -63,6 +63,6 @@ public class ButtonClick_6_1 : MonoBehaviour
     }
     public void button4()
     {
-        sceneLoadManager.LoadOrUnloadScene("6_4");
+        sceneLoadManager.LoadOrUnloadScene("6_5");
     }
 }
