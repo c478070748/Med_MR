@@ -9,8 +9,8 @@ public class ButtonClick_6_1 : MonoBehaviour
 
     public GameObject ClippingPlane, ClippingBox, ClippingSphere;
 
-    public static Vector3 originPos = Vector3.zero;
-    public static Quaternion originRot = Quaternion.identity;
+    //public static Vector3 originPos = Vector3.zero;
+    //public static Quaternion originRot = Quaternion.identity;
 
     private void Start()
     {
@@ -23,20 +23,20 @@ public class ButtonClick_6_1 : MonoBehaviour
         Global.status2 = Status2.SetQuestion;
         GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
 
-        GameObject Center = GameObject.FindGameObjectWithTag("Center");
+        //GameObject Center = GameObject.FindGameObjectWithTag("Center");
 
-        if(originPos == Vector3.zero)
-        {
-            originPos = Center.transform.position;
-        }
+        //if(originPos == Vector3.zero)
+        //{
+        //    originPos = Center.transform.position;
+        //}
 
-        if (originRot == Quaternion.identity)
-        {
-            originRot = Center.transform.rotation;
-        }
+        //if (originRot == Quaternion.identity)
+        //{
+        //    originRot = Center.transform.rotation;
+        //}
 
-        Center.transform.SetPositionAndRotation(originPos, originRot);
-        Center.GetComponent<BoxCollider>().enabled = false;
+        //Center.transform.SetPositionAndRotation(originPos, originRot);
+        //Center.GetComponent<BoxCollider>().enabled = false;
 
         foreach (GameObject model in models)
         {

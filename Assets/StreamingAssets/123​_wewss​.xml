@@ -1,0 +1,13 @@
+<root>
+  <user Id="123​" Name="wewss​">
+    <test type="test2" date="2022_11_20" time="19_43_46">
+      <item StartTime="114.2496" EndTime="133.2151" SpendTime="18.96549" YDis="0.02019843" />
+      <item StartTime="139.4146" EndTime="149.0818" SpendTime="9.667267" YDis="-0.00839635" />
+      <item StartTime="155.3183" EndTime="165.0519" SpendTime="9.733627" YDis="-0.04143206" />
+    </test>
+    <test type="test3" date="2022_11_20" time="19_44_57">
+      <item StartTime="185.1509" EndTime="255.9806" SpendTime="70.82971" Submit="0" Answer="1" IsRight="0" />
+    </test>
+    <test type="test1" date="2022_11_20" time="19_46_31" />
+  </user>
+</root>

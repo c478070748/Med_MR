@@ -1,0 +1,10 @@
+<root>
+  <user Id="123​" Name="chenxin​">
+    <test type="test1" date="2022_11_20" time="19_28_51">
+      <item StartTime="138.0149" EndTime="154.9805" SpendTime="16.96568" PosDis="1.263398" RotAngle="114.5768" />
+    </test>
+    <test type="test2" date="2022_11_20" time="19_29_53">
+      <item StartTime="199.9853" EndTime="218.5188" SpendTime="18.53348" YDis="0.004144564" />
+    </test>
+  </user>
+</root>

@@ -30,6 +30,8 @@ public class QuestionSystem6_5 : MonoBehaviour
 
     public Draw6_5 draw;
 
+    GameObject Center;
+
     void Start()
     {
 
@@ -61,6 +63,8 @@ public class QuestionSystem6_5 : MonoBehaviour
 
     void Init()
     {
+
+        Center = GameObject.FindGameObjectWithTag("Center");
         
         GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
 
@@ -127,7 +131,8 @@ public class QuestionSystem6_5 : MonoBehaviour
         if (curIndex != 0)
             offset = (questionList[curIndex] - questionList[preIndex]);
 
-        offset *= 0.01f;
+        float CenterScale = Center.transform.localScale.x;
+        offset *= CenterScale;
         plane.transform.position += direction * offset;
 
 

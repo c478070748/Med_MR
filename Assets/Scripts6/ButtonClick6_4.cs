@@ -10,7 +10,7 @@ public class ButtonClick6_4 : MonoBehaviour
 
     public GameObject[] selections;
 
-
+    public int CurSubmit;
     public void pressdown()
     {
         gameObject.GetComponent<MeshRenderer>().material.color = click;
@@ -33,23 +33,31 @@ public class ButtonClick6_4 : MonoBehaviour
     {
         clearColor();
         selections[0].GetComponent<MeshRenderer>().material.color = click;
+
+        CurSubmit = 0;
     }
 
     public void B()
     {
         clearColor();
         selections[1].GetComponent<MeshRenderer>().material.color = click;
+
+        CurSubmit = 1;
     }
 
     public void C()
     {
         clearColor();
         selections[2].GetComponent<MeshRenderer>().material.color = click;
+
+        CurSubmit = 2;
     }
 
     public void D()
     {
         clearColor();
         selections[3].GetComponent<MeshRenderer>().material.color = click;
+
+        CurSubmit = 3;
     }
 }

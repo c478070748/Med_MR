@@ -15,10 +15,13 @@ public class SceneLoadManager : MonoBehaviour
     //public GameObject[] Models;
     private void Start()
     {
+
+        Center = GameObject.FindGameObjectWithTag("Center");
         //Models = GameObject.FindGameObjectsWithTag("Model");
 
         IMixedRealitySceneSystem sceneSystem = MixedRealityToolkit.Instance.GetService<IMixedRealitySceneSystem>();
-        //sceneSystem.OnSceneLoaded += HandleSceneOperation;
+        sceneSystem.OnSceneLoaded += OnSceneLoaded;
+        sceneSystem.OnWillUnloadScene += OnWillUnloadScene;
 
         LoadOrUnloadScene("6_1");
     }
@@ -54,17 +57,111 @@ public class SceneLoadManager : MonoBehaviour
         await sceneSystem.LoadContent(SceneName, LoadSceneMode.Single);
     }
 
+
+    Vector3 rightPosition = Vector3.zero;
+    Quaternion rightRotation = Quaternion.identity;
+    Vector3 rightScale = Vector3.zero;
+
+    Vector3 leftPosition = Vector3.zero;
+    Quaternion leftRotation = Quaternion.identity;
+    Vector3 leftScale = Vector3.zero;
+
+    GameObject Center;
+
+
+    Vector3 centerPosition = Vector3.zero;
+    Vector3 centerScale = Vector3.zero;
+    Quaternion centerRotation = Quaternion.identity;
+
+    private void OnSceneLoaded(string SceneName)
+    {
+        //Debug.Log(rightTransform);
+        if (rightScale != Vector3.zero)
+        {
+            GameObject right = GameObject.FindGameObjectWithTag("Right");
+            right.transform.position = rightPosition;
+            right.transform.rotation = rightRotation;
+            right.transform.localScale = rightScale;
+        }
+
+        if(leftPosition != Vector3.zero)
+        {
+            GameObject left = GameObject.FindGameObjectWithTag("Left");
+            left.transform.position = leftPosition;
+            left.transform.rotation = leftRotation;
+            left.transform.localScale = leftScale;
+        }
+
+        if(SceneName == "6_1")
+        {
+            Center.GetComponent<BoxCollider>().enabled = true;
+            Center.GetComponent<RotationAxisConstraint>().enabled = true;
+            
+        }else if(SceneName == "6_2")
+        {
+            Center.GetComponent<BoxCollider>().enabled = true;
+            Center.GetComponent<RotationAxisConstraint>().enabled = false;
+        }
+        else
+        {
+            Center.GetComponent<BoxCollider>().enabled = false;
+            
+        }
+
+        if (centerScale != Vector3.zero)
+        {
+            Center.transform.position = centerPosition;
+            Center.transform.rotation = centerRotation;
+            Center.transform.localScale = centerScale;
+
+
+            GameObject Content = GameObject.FindGameObjectWithTag("Content");
+            if (Content != null)
+            {
+                Content.transform.position = centerPosition;
+                Content.transform.rotation = centerRotation;
+                Content.transform.localScale = centerScale;
+            }
+        }
+    }
+
+    private void OnWillUnloadScene(string SceneName)
+    {
+        GameObject right = GameObject.FindGameObjectWithTag("Right");
+        if(right != null)
+        {
+            rightPosition = right.transform.position;
+            rightRotation = right.transform.rotation;
+            rightScale = right.transform.localScale;
+        }
+
+        GameObject left = GameObject.FindGameObjectWithTag("Left");
+        if(left != null)
+        {
+            leftPosition = left.transform.position;
+            leftRotation = left.transform.rotation;
+            leftScale = left.transform.localScale;
+        }
+
+        if (Center != null && SceneName == "6_1")
+        {
+            centerPosition = Center.transform.position;
+            centerRotation = Center.transform.rotation;
+            centerScale = Center.transform.localScale;
+        }
+    }
+
     //private void HandleSceneOperation(string SceneName)
     //{
     //    if(SceneName == "6_1")
     //    {
     //        GameObject[] ClipTools = GameObject.FindGameObjectsWithTag("ClipTool");
-            
+
 
     //        foreach(GameObject clipTool in ClipTools)
     //        {
 
-                
+
     //            if(clipTool.name == "ClippingSphere")
     //            {
     //                ClippingSphere clippingSphere = clipTool.GetComponent<ClippingSphere>();

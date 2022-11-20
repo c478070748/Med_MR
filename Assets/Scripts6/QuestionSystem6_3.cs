@@ -28,6 +28,9 @@ public class QuestionSystem6_3 : MonoBehaviour
 
     public GameObject submit;
 
+    EventTriggle6_3 eventTriggle;
+
+    GameObject Center;
     void Start()
     {
 
@@ -59,6 +62,9 @@ public class QuestionSystem6_3 : MonoBehaviour
 
     void Init()
     {
+        eventTriggle = GetComponent<EventTriggle6_3>();
+
+        Center = GameObject.FindGameObjectWithTag("Center");
         
         GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
 
@@ -128,7 +134,8 @@ public class QuestionSystem6_3 : MonoBehaviour
         if (curIndex != 0)
             offset = (questionList[curIndex] - questionList[preIndex]);
 
-        offset *= 0.01f;
+        float CenterScale = Center.transform.localScale.x;
+        offset *= CenterScale;
         answer.transform.position += direction * offset;
 
 
@@ -149,6 +156,10 @@ public class QuestionSystem6_3 : MonoBehaviour
 
 
             Global.status2 = Status2.Check;
+
+
+
+            eventTriggle.OnCommit();
         }
 
 
@@ -165,6 +176,10 @@ public class QuestionSystem6_3 : MonoBehaviour
 
             submit.GetComponent<ClippingPlane>().enabled = true;
             submit.GetComponent<ObjectManipulator>().enabled = true;
+
+
+            eventTriggle.OnStart();
+            eventTriggle.OnNext();
         }
             
     }
@@ -183,12 +198,16 @@ public class QuestionSystem6_3 : MonoBehaviour
 
             curIndex++;
             Global.status2 = Status2.SetQuestion;
+
+            eventTriggle.OnNext();
         }
 
     }
 
     public void gohome()
     {
+        eventTriggle.OnExit();
+
         GameObject.Find("SceneLoadManager").GetComponent<SceneLoadManager>().LoadOrUnloadScene("6_1");
     }
 }
