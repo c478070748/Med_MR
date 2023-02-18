@@ -28,6 +28,13 @@ public class QuestionSystem6_2 : MonoBehaviour
 
     private EventTriggle6_2 eventTriggle;
 
+
+    public Vector2 cutCenter;//½ØÍ¼ÖÐÐÄ
+
+    public float cutLen;//½ØÍ¼±ß³¤
+
+    public Camera lookDownCamera;//¸©î«ÉãÏñ»ú
+
     void Start()
     {
         Center = GameObject.FindGameObjectWithTag("Center");
@@ -56,6 +63,48 @@ public class QuestionSystem6_2 : MonoBehaviour
 
 
         }
+
+        //¼ô²ÃCTÍ¼
+        MeshFilter meshFilter = plane.GetComponent<MeshFilter>();
+        Vector2[] uvs = new Vector2[meshFilter.mesh.vertices.Length];
+        uvs[0] = new Vector2(cutCenter.x - cutLen / 2, cutCenter.y - cutLen / 2);
+        uvs[1] = new Vector2(cutCenter.x + cutLen / 2, cutCenter.y - cutLen / 2);
+        uvs[2] = new Vector2(cutCenter.x - cutLen / 2, cutCenter.y + cutLen / 2);
+        uvs[3] = new Vector2(cutCenter.x + cutLen / 2, cutCenter.y + cutLen / 2);
+        meshFilter.mesh.uv = uvs;
+
+
+        plane.transform.localScale *= cutLen;
+        //Vector3[] vertice = meshFilter.mesh.vertices;
+        //Vector3 origin = vertice[0];
+        //vertice[0] = origin + new Vector3(cutCenter.x - cutLen / 2, cutCenter.y - cutLen / 2, 0);
+        //vertice[1] = origin + new Vector3(cutCenter.x + cutLen / 2, cutCenter.y - cutLen / 2, 0);
+        //vertice[2] = origin + new Vector3(cutCenter.x - cutLen / 2, cutCenter.y + cutLen / 2, 0);
+        //vertice[3] = origin + new Vector3(cutCenter.x + cutLen / 2, cutCenter.y + cutLen / 2, 0);
+        //meshFilter.mesh.vertices = vertice;
+
+        Vector2 modelOffset = (cutCenter - new Vector2(0.5f, 0.5f)) / cutLen;//Ä£ÐÍÆ«ÒÆÁ¿
+
+        target.transform.SetParent(plane.transform);
+
+        target.transform.localPosition -= new Vector3(modelOffset.x, modelOffset.y, 0);
+
+        target.transform.SetParent(transform);
+
+
+        //Debug.Log(modelOffset);
+        //plane.transform.localScale *= cutLen;
+        //Debug.Log(meshFilter.mesh.vertices);
+        //Debug.Log(vertice[0]);
+        //Debug.Log(vertice[1]);
+        //Debug.Log(vertice[2]);
+        //Debug.Log(vertice[3]);
+
+        //ÉèÖÃ¸©î«ÉãÏñ»ú²ÎÊý
+        float y = plane.transform.localScale.x + 60;
+        //Debug.Log(y);
+        lookDownCamera.transform.localPosition += new Vector3(0, y, 0);
+
     }
 
 
@@ -104,21 +153,26 @@ public class QuestionSystem6_2 : MonoBehaviour
         plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
 
 
-        Vector3 direction = plane.transform.up;
+        Vector3 direction = -plane.transform.forward;
         float offset = questionList[curIndex];
         if (curIndex != 0)
             offset = (questionList[curIndex] - questionList[preIndex]);
 
         float CenterScale = Center.transform.localScale.x;
         offset *= CenterScale;
+
+        lookDownCamera.transform.SetParent(plane.transform);
+
         plane.transform.position += direction * offset;
+
+        lookDownCamera.transform.SetParent(transform.parent);
 
 
         target.transform.SetParent(plane.transform);
 
         float x = 0;
-        float y = Random.Range(0, 360);
-        float z = 0;
+        float y = 0;
+        float z = Random.Range(0, 360);
         plane.transform.Rotate(new Vector3(x, y, z));
 
 

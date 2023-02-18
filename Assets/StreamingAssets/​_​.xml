@@ -1,0 +1,9 @@
+<root>
+  <user Id="​" Name="​">
+    <test />
+    <test type="test1" date="2023_2_18" time="15_7_11" />
+    <test type="test1" date="2023_2_18" time="16_37_57">
+      <item StartTime="25.61917" EndTime="51.85202" SpendTime="26.23285" PosDis="1.275159" RotAngle="111.7199" />
+    </test>
+  </user>
+</root>
