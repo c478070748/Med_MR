@@ -35,6 +35,8 @@ public class QuestionSystem6_2 : MonoBehaviour
 
     public Camera lookDownCamera;//¸©î«ÉãÏñ»ú
 
+    Vector3 originPos;
+
     void Start()
     {
         Center = GameObject.FindGameObjectWithTag("Center");
@@ -149,21 +151,23 @@ public class QuestionSystem6_2 : MonoBehaviour
 
     void setQuestion(int index)
     {
+        plane.GetComponent<GrabMapping>()?.CloseMapping();
+
         //Debug.Log(questionList[index]);
         plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
 
 
         Vector3 direction = -plane.transform.forward;
         float offset = questionList[curIndex];
-        if (curIndex != 0)
-            offset = (questionList[curIndex] - questionList[preIndex]);
+        //if (curIndex != 0)
+        //    offset = (questionList[curIndex] - questionList[preIndex]);
 
         float CenterScale = Center.transform.localScale.x;
         offset *= CenterScale;
 
         lookDownCamera.transform.SetParent(plane.transform);
 
-        plane.transform.position += direction * offset;
+        plane.transform.position = originPos + direction * offset;
 
         lookDownCamera.transform.SetParent(transform.parent);
 
@@ -177,6 +181,8 @@ public class QuestionSystem6_2 : MonoBehaviour
 
 
         target.transform.SetParent(transform);
+
+        plane.GetComponent<GrabMapping>()?.UpdateStatus(questionList[curIndex]);
     }
 
     public void commit()
@@ -207,6 +213,22 @@ public class QuestionSystem6_2 : MonoBehaviour
         if (isLoaded == false)
         {
             isLoaded = true;
+
+            originPos = plane.transform.position;
+
+
+            Vector3 direction = -plane.transform.forward;
+            float offset = textures.Length - 1;
+            //if (curIndex != 0)
+            //    offset = (questionList[curIndex] - questionList[preIndex]);
+
+            float CenterScale = Center.transform.localScale.x;
+            offset *= CenterScale;
+
+            Vector3 endPos = originPos + direction * offset;
+
+            plane.GetComponent<GrabMapping>()?.Init(originPos.y, endPos.y);
+
 
             eventTriggle.OnStart();
             eventTriggle.OnNext();

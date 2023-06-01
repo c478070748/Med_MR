@@ -97,7 +97,7 @@ public class SceneLoadManager : MonoBehaviour
             Center.GetComponent<BoxCollider>().enabled = true;
             Center.GetComponent<RotationAxisConstraint>().enabled = true;
             
-        }else if(SceneName == "6_2")
+        }else if(SceneName == "6_2" || SceneName == "7_1")
         {
             Center.GetComponent<BoxCollider>().enabled = true;
             Center.GetComponent<RotationAxisConstraint>().enabled = false;

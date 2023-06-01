@@ -178,6 +178,7 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -697,12 +698,14 @@ PlayerSettings:
     WindowsStoreApps:
       VideosLibrary: False
       GazeInput: True
-      InternetClientServer: False
+      PrivateNetworkClientServer: True
+      InternetClientServer: True
       SpatialPerception: True
       InternetClient: True
       WebCam: True
       Microphone: True
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Holographic: False
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 
