@@ -73,6 +73,12 @@ MonoBehaviour:
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 1900d5d6a62452b49ae1daad3effca88, type: 3}
+  - Name: 7_3
+    Path: Assets/Scenes/7_3.unity
+    Included: 0
+    BuildIndex: -1
+    Tag: Untagged
+    Asset: {fileID: 102900000, guid: a7c15d4124cf66348abaa3b0774b1339, type: 3}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
   - reference: UnityEngine.GameObject, UnityEngine.CoreModule

@@ -37,6 +37,8 @@ public class QuestionSystem6_2 : MonoBehaviour
 
     Vector3 originPos;
 
+    public bool isRotation = false;
+
     void Start()
     {
         Center = GameObject.FindGameObjectWithTag("Center");
@@ -171,16 +173,19 @@ public class QuestionSystem6_2 : MonoBehaviour
 
         lookDownCamera.transform.SetParent(transform.parent);
 
+        if (isRotation)
+        {
+            target.transform.SetParent(plane.transform);
 
-        target.transform.SetParent(plane.transform);
-
-        float x = 0;
-        float y = 0;
-        float z = Random.Range(0, 360);
-        plane.transform.Rotate(new Vector3(x, y, z));
+            float x = 0;
+            float y = 0;
+            float z = Random.Range(0, 360);
+            plane.transform.Rotate(new Vector3(x, y, z));
 
 
-        target.transform.SetParent(transform);
+            target.transform.SetParent(transform);
+        }
+        
 
         plane.GetComponent<GrabMapping>()?.UpdateStatus(questionList[curIndex]);
     }
