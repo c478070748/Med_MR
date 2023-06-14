@@ -592,7 +592,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 64
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 08150ec8a704947488d9d9cf1a8bbef0, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 96b59b3ba8efa2a4ba414a78c86ad375, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -8073,6 +8073,7 @@ MonoBehaviour:
   cutCenter: {x: 0.3, y: 0.3}
   cutLen: 0.6
   lookDownCamera: {fileID: 117896250}
+  isRotation: 0
 --- !u!114 &8523220493963931751
 MonoBehaviour:
   m_ObjectHideFlags: 0
