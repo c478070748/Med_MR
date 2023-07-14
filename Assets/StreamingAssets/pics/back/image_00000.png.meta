@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/StreamingAssets/pics/back/image_00000.png.meta
 guid: 8f13f278eaf138845b2e4c2e5d6abd2c
+========
+guid: 8d47d07fbf0da644986bb13571164220
+>>>>>>>> 82c20a7be4e2a2e2b6f3caaec198d8dbacaf436a:Assets/StreamingAssets/pics/back/image_00001.png.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
