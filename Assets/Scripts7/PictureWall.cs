@@ -16,30 +16,35 @@ public class PictureWall : MonoBehaviour
 
     public Camera renderCamera;
 
+    
     float W, w;
     float H, h;
-    float Sw,Sh, s;
-    float c;//һ��ͼƬ�ı߳�
+    float Sw,Sh, s,ps;
+    float c;//һ��ͼƬ�ı߳�
 
     private void Start()
     {
         Sw = wall.transform.parent.localScale.x;
         Sh = wall.transform.parent.localScale.y;
-        s = ctPic.transform.parent.localScale.x;
+        ps = ctPic.transform.parent.localScale.x;
         c = ctPic.GetComponent<MeshRenderer>().bounds.size.y;
 
         W = wall.GetComponent<MeshRenderer>().bounds.size.x;
-        w = ctPic.GetComponent<MeshRenderer>().bounds.size.y * 2 + spacing * 3;
+        w = W / 4.0f;//目标宽度
+        float w_ct = ctPic.GetComponent<MeshRenderer>().bounds.size.y * 2 + spacing * 3;
 
         H = wall.GetComponent<MeshRenderer>().bounds.size.y;
-        h = ctPic.GetComponent<MeshRenderer>().bounds.size.y + spacing * 2;
+        h = H / 4.0f;//目标高度
+        float h_ct = ctPic.GetComponent<MeshRenderer>().bounds.size.y + spacing * 2;
+
+        s = w / w_ct;
 
         //W *= Sw;
         //H *= Sh;
         //w *= s;
         //h *= s;
         
-        Debug.Log("W:" + W + " w:" + w + " H:" + H + " h:" + h + " Sw:" + Sw + " s:" + s);
+        Debug.Log("W:" + W + " w:" + w + " H:" + H + " h:" + h + " w_ct:" + w_ct + " s:" + s);
     }
 
     //public Vector3 ScaleOffset = new Vector3(0.5f, 0.5f, 0.5f);
@@ -54,15 +59,17 @@ public class PictureWall : MonoBehaviour
 
         Vector3 archol = wall.transform.position + new Vector3(-W / 2, H / 2, 0);
         Vector3 pos = archol + new Vector3(col * w + w / 2, -(row * h + h / 2), 0);
-        Vector3 ctPos = pos + new Vector3(-(w / 2 - spacing*2), 0, -0.01f);
-        Vector3 cutPos = pos + new Vector3(w / 2 - spacing*2, 0, -0.01f);
+        Vector3 ctPos = pos + new Vector3(-(w * 1.075f - spacing * 2), 0, -0.01f);//有不科学因素存在，注意！！！
+        Vector3 cutPos = pos + new Vector3(w * 1.075f - spacing * 2, 0, -0.01f);//有不科学因素存在，注意！！！
 
         GameObject root = new GameObject(index + "_root");
         GameObject ctObj = GameObject.Instantiate(ctPic);
         GameObject cutObj = GameObject.Instantiate(cutPic);
 
-        //ctObj.transform.localScale *= s;
-        //cutObj.transform.localScale *= s;
+        //ctObj.transform.localScale = ctPic.transform.localScale;
+        //ctObj.transform.localScale = cutPic.transform.localScale;
+        ctObj.transform.localScale *= s;
+        cutObj.transform.localScale *= s;
 
         ctObj.name = index + "_ct";
         cutObj.name = index + "_cut";
@@ -76,7 +83,7 @@ public class PictureWall : MonoBehaviour
         root.transform.position = pos;
         ctObj.transform.SetParent(root.transform);
         cutObj.transform.SetParent(root.transform);
-        root.transform.localScale = new Vector3(s, s, s);
+        root.transform.localScale = new Vector3(ps, ps, ps);
         root.transform.SetParent(wall.transform);
 
         ctPicList.Add(ctObj);

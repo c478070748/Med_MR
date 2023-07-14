@@ -38,17 +38,17 @@ public class QuestionSystem6_3 : MonoBehaviour
 
         
 
-        //ÅÐ¶ÏÊÇ·ñ´æÔÚÄ³¸öÎÄ¼þ¼Ð
+        //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
         if (Directory.Exists(localPath))
         {
             DirectoryInfo direction = new DirectoryInfo(localPath);
-            files = direction.GetFiles("*.jpg");        //¼ÓÔØÊ²Ã´ÀàÐÍµÄÎÄ¼þ
+            files = direction.GetFiles("*.jpg");        //ï¿½ï¿½ï¿½ï¿½Ê²Ã´ï¿½ï¿½ï¿½Íµï¿½ï¿½Ä¼ï¿½
             //Debug.Log(files.Length);
 
             total = files.Length;
             textures = new Texture2D[total];
 
-            //localPath + "/" + files[index].Name   : ÓÃÓÚµÃµ½ÎÄ¼þµÄÂ·¾¶
+            //localPath + "/" + files[index].Name   : ï¿½ï¿½ï¿½ÚµÃµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -84,17 +84,17 @@ public class QuestionSystem6_3 : MonoBehaviour
     IEnumerator Load(string url, int i)
     {
         double startTime = (double)Time.time;
-        //ÇëÇóWWW
+        //ï¿½ï¿½ï¿½ï¿½WWW
         WWW www = new WWW(url);
 
         yield return www;
         if (www != null && string.IsNullOrEmpty(www.error))
         {
-            //»ñÈ¡Texture
+            //ï¿½ï¿½È¡Texture
             textures[i] = www.texture;
 
             startTime = (double)Time.time - startTime;
-            //Debug.Log("www¼ÓÔØÓÃÊ± £º " + startTime);
+            //Debug.Log("wwwï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê± ï¿½ï¿½ " + startTime);
 
         }
 
@@ -122,13 +122,13 @@ public class QuestionSystem6_3 : MonoBehaviour
 
     void setQuestion(int index)
     {
-        //µ÷ÕûÃæ°åÌùÍ¼
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
         //Debug.Log(questionList[index]);
         plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
 
 
         
-        //µ÷Õû´ð°¸Î»ÖÃ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
         Vector3 direction = -answer.transform.up;
         float offset = questionList[curIndex];
         if (curIndex != 0)
@@ -146,11 +146,11 @@ public class QuestionSystem6_3 : MonoBehaviour
     {
         if (Global.status2 == Status2.giveAnswer)
         {
-            //È¥³ýÌá½»µÄÇÐ¸îÐ§¹û
+            //È¥ï¿½ï¿½ï¿½á½»ï¿½ï¿½ï¿½Ð¸ï¿½Ð§ï¿½ï¿½
             submit.GetComponent<ClippingPlane>().enabled = false;
             submit.GetComponent<ObjectManipulator>().enabled = false;
 
-            //ÏÔÊ¾´ð°¸
+            //ï¿½ï¿½Ê¾ï¿½ï¿½
             answer.GetComponent<ClippingPlane>().enabled = true;
             answer.SetActive(true);
 

@@ -6605,7 +6605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: scene3
+  m_text: scene7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
@@ -11345,7 +11345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1522861214
 Transform:
   m_ObjectHideFlags: 0
@@ -11545,7 +11545,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1450429458}
         m_TargetAssemblyTypeName: ButtonClick_6_1, Assembly-CSharp
-        m_MethodName: button3
+        m_MethodName: button7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

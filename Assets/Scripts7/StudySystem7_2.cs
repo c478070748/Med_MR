@@ -20,6 +20,11 @@ public class StudySystem7_2 : MonoBehaviour
         {
             targetPanel.GetComponent<ClippingPlane>().AddRenderer(renderer);
         }
+
+
+        //设置初始模式
+        SetYAxisStatus();
+        cutStatus = CutStatus.YAxis;
     }
 
     public enum CutStatus
@@ -28,7 +33,7 @@ public class StudySystem7_2 : MonoBehaviour
         YAxis
     }
 
-    public CutStatus cutStatus = CutStatus.Free;
+    public CutStatus cutStatus;
     
 
     public void FreeCutBtn()
@@ -38,6 +43,7 @@ public class StudySystem7_2 : MonoBehaviour
 
         cutStatus = CutStatus.Free;
         targetPanel.GetComponent<GrabMapping>()?.CloseMapping();
+        targetPanel.GetComponent<GrabMapping7_2>()?.CloseMapping();
 
         targetPanel.GetComponent<RotationAxisConstraint>().ConstraintOnRotation = 0;
         targetPanel.GetComponent<MoveAxisConstraint>().ConstraintOnMovement = 0;
@@ -77,6 +83,9 @@ public class StudySystem7_2 : MonoBehaviour
 
         targetPanel.GetComponent<GrabMapping>()?.Init(originPos.y, endPos.y);
         targetPanel.GetComponent<GrabMapping>()?.UpdateStatus(0);
+
+        targetPanel.GetComponent<GrabMapping7_2>()?.Init(originPos.y, endPos.y);
+        targetPanel.GetComponent<GrabMapping7_2>()?.UpdateStatus(0);
     }
 
 
