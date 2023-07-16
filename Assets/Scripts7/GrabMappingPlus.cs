@@ -169,9 +169,18 @@ public class GrabMappingPlus : MonoBehaviour
 
         int res = (int)((Mathf.Abs(CS.magnitude) / Mathf.Abs(SE.magnitude)) * textures.Length);
 
+<<<<<<< HEAD
         //Debug.Log("res:" + res);
         //Debug.Log("-res:" + (textures.Length - res));
 
+=======
+<<<<<<< HEAD
+        //Debug.Log("res:" + res);
+        //Debug.Log("-res:" + (textures.Length - res));
+
+=======
+>>>>>>> 82c20a7be4e2a2e2b6f3caaec198d8dbacaf436a
+>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8
         return res;
     }
 

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 235455ff794cfea4ab1089c6d36dc27c
+=======
+<<<<<<<< HEAD:Assets/StreamingAssets/pics/Series-002.meta
+guid: 235455ff794cfea4ab1089c6d36dc27c
+========
+guid: cc8eb2ab7af59ce469451bf485747e51
+>>>>>>>> 82c20a7be4e2a2e2b6f3caaec198d8dbacaf436a:Assets/StreamingAssets/pics/back.meta
+>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

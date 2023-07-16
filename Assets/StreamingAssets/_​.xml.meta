@@ -1,5 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/StreamingAssets/_​.xml.meta
 guid: 698d405428406d34ca2b99402aea6a7e
+========
+<<<<<<< HEAD
+guid: 0b0e7a38a8d537347a0aceab20e7965d
+>>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8:Assets/StreamingAssets/pics/Series-002/img-00001-00001.jpg.meta
+=======
+guid: 8f13f278eaf138845b2e4c2e5d6abd2c
+>>>>>>>> 82c20a7be4e2a2e2b6f3caaec198d8dbacaf436a:Assets/StreamingAssets/pics/back/image_00000.png.meta
+>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8
 DefaultImporter:
   externalObjects: {}
   userData: 

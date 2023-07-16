@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts7/GetWH.cs.meta
 guid: 2b130315f00f9cc42b6da2b862f866db
+========
+guid: 35bde7a9f09f2ce4a9a1fa46f4b4bdca
+>>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8:Assets/Scripts7/GrabMapping7_2.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

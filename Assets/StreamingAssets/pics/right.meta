@@ -1,8 +1,18 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/StreamingAssets/pics/right.meta
 guid: a1c54800ebeefd84585d6cb6d8eeb675
 folderAsset: yes
 DefaultImporter:
+========
+guid: 08150ec8a704947488d9d9cf1a8bbef0
+NativeFormatImporter:
+<<<<<<< HEAD
+>>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8:Assets/New Render Texture.renderTexture.meta
+=======
+>>>>>>>> 82c20a7be4e2a2e2b6f3caaec198d8dbacaf436a:Assets/New Render Texture.renderTexture.meta
+>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8
   externalObjects: {}
+  mainObjectFileID: 8400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts7/GrabMapping7_2.cs.meta
 guid: 35bde7a9f09f2ce4a9a1fa46f4b4bdca
+========
+guid: 2faa04b850140124c845438becf40298
+>>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8:Assets/Scripts7/GrabMapping7_2_2.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

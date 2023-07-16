@@ -1,5 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts6/QuestionSystem7_2.cs.meta
 guid: 26828ec7db59a1e4992386c4c54f9200
+========
+<<<<<<< HEAD
+guid: 2b130315f00f9cc42b6da2b862f866db
+>>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8:Assets/Scripts7/GetWH.cs.meta
+=======
+guid: 86433ada690c20d44929689f63fadc5a
+>>>>>>>> 82c20a7be4e2a2e2b6f3caaec198d8dbacaf436a:Assets/Scripts7/GrabMappingPlus.cs.meta
+>>>>>>> bde5ba0f232a56e4c723cb51529a0c0585cc2ce8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
