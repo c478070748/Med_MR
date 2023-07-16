@@ -66,13 +66,19 @@ MonoBehaviour:
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 102900000, guid: 3ae50372a08ba3242b2e3f7dc5a74c6d, type: 3}
+    Asset: {fileID: 102900000, guid: 6fcbd190f60bcb24791658088306dc89, type: 3}
   - Name: 7_2
     Path: Assets/Scenes/7_2.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 102900000, guid: 1900d5d6a62452b49ae1daad3effca88, type: 3}
+    Asset: {fileID: 102900000, guid: 2bdc07dddcbc0f44b83e6e42022d88c6, type: 3}
+  - Name: 7_3
+    Path: Assets/Scenes/7_3.unity
+    Included: 0
+    BuildIndex: -1
+    Tag: Untagged
+    Asset: {fileID: 102900000, guid: 92ba8b72743b7154685b44af7844d314, type: 3}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
   - reference: UnityEngine.GameObject, UnityEngine.CoreModule

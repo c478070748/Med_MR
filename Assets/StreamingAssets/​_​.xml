@@ -1,54 +1,8 @@
 <root>
   <user Id="​" Name="​">
     <test />
-    <test type="test1" date="2023_2_18" time="15_7_11" />
-    <test type="test1" date="2023_2_18" time="16_37_57">
-      <item StartTime="25.61917" EndTime="51.85202" SpendTime="26.23285" PosDis="1.275159" RotAngle="111.7199" />
-    </test>
-    <test type="test2" date="2023_4_18" time="22_21_22">
-      <item StartTime="46.61206" EndTime="54.18065" SpendTime="7.568596" YDis="0.01351291" />
-    </test>
-    <test type="test3" date="2023_4_18" time="22_21_41">
-      <item StartTime="65.26899" EndTime="70.35246" SpendTime="5.083473" Submit="0" Answer="2" IsRight="0" />
-    </test>
-    <test />
-    <test type="test1" date="2023_4_19" time="8_53_32" />
-    <test />
-    <test type="test1" date="2023_4_19" time="9_0_18">
-      <item StartTime="475.9615" EndTime="618.0524" SpendTime="142.0909" PosDis="1.112879" RotAngle="107.0869" />
-    </test>
-    <test />
-    <test />
-    <test type="test1" date="2023_5_22" time="11_30_27">
-      <item StartTime="4.161201" EndTime="5.481603" SpendTime="1.320402" PosDis="2.888716" RotAngle="114.4045" />
-      <item StartTime="6.392397" EndTime="9.558414" SpendTime="3.166018" PosDis="2.82787" RotAngle="108.2218" />
-    </test>
-    <test type="test1" date="2023_5_22" time="11_30_37">
-      <item StartTime="14.72045" EndTime="16.87005" SpendTime="2.149605" PosDis="3.024515" RotAngle="167.2984" />
-    </test>
-    <test />
-    <test type="test3" date="2023_5_24" time="10_29_23" />
-    <test />
-    <test />
-    <test />
-    <test />
-    <test />
-    <test />
-    <test type="test1" date="2023_5_25" time="21_51_13">
-      <item StartTime="82.93288" EndTime="171.4742" SpendTime="88.54134" PosDis="0.9461986" RotAngle="172.8739" />
-    </test>
-    <test />
-    <test />
-    <test />
-    <test type="test1" date="2023_5_29" time="14_23_0">
-      <item StartTime="133.8173" EndTime="266.3124" SpendTime="132.4951" PosDis="2.876892" RotAngle="119.9171" />
-      <item StartTime="356.842" EndTime="400.4896" SpendTime="43.64758" PosDis="2.992059" RotAngle="111.8947" />
-    </test>
-    <test />
-    <test />
-    <test />
-    <test type="test1" date="2023_5_29" time="14_40_45">
-      <item StartTime="189.4778" EndTime="191.1537" SpendTime="1.675888" PosDis="2.829692" RotAngle="137.2849" />
+    <test type="test1" date="2023_6_14" time="16_29_29">
+      <item StartTime="6.334042" EndTime="274.281" SpendTime="267.947" PosDis="1.062187" RotAngle="90.00001" />
     </test>
     <test />
     <test />

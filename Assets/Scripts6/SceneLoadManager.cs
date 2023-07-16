@@ -17,6 +17,9 @@ public class SceneLoadManager : MonoBehaviour
     {
 
         Center = GameObject.FindGameObjectWithTag("Center");
+        centerPosition = Center.transform.position;
+        centerRotation = Center.transform.rotation;
+        centerScale = Center.transform.localScale;
         //Models = GameObject.FindGameObjectsWithTag("Model");
 
         IMixedRealitySceneSystem sceneSystem = MixedRealityToolkit.Instance.GetService<IMixedRealitySceneSystem>();
@@ -84,20 +87,20 @@ public class SceneLoadManager : MonoBehaviour
             right.transform.localScale = rightScale;
         }
 
-        if(leftPosition != Vector3.zero)
+        /*if(leftPosition != Vector3.zero)
         {
             GameObject left = GameObject.FindGameObjectWithTag("Left");
             left.transform.position = leftPosition;
             left.transform.rotation = leftRotation;
             left.transform.localScale = leftScale;
-        }
+        }*/
 
         if(SceneName == "6_1")
         {
             Center.GetComponent<BoxCollider>().enabled = true;
             Center.GetComponent<RotationAxisConstraint>().enabled = true;
             
-        }else if(SceneName == "6_2" || SceneName == "7_1")
+        }else if(SceneName == "6_2" || SceneName == "7_1" || SceneName == "7_3")
         {
             Center.GetComponent<BoxCollider>().enabled = true;
             Center.GetComponent<RotationAxisConstraint>().enabled = false;
@@ -116,12 +119,31 @@ public class SceneLoadManager : MonoBehaviour
 
 
             GameObject Content = GameObject.FindGameObjectWithTag("Content");
-            if (Content != null)
+            if (Content != null && SceneName != "7_3")
             {
                 Content.transform.position = centerPosition;
                 Content.transform.rotation = centerRotation;
                 Content.transform.localScale = centerScale;
             }
+
+
+            if (Center != null)
+            {
+                Center.transform.position = centerPosition;
+                Center.transform.rotation = centerRotation;
+                Center.transform.localScale = centerScale;
+            }
+            
+            if(SceneName == "7_3")
+            {
+                Center.transform.localScale *= 0.5f;
+            }
+            //Transform root = Content.transform.parent;
+            //if (root != null)
+            //{
+            //    root.position = centerPosition;
+            //}
+
         }
     }
 
@@ -135,20 +157,20 @@ public class SceneLoadManager : MonoBehaviour
             rightScale = right.transform.localScale;
         }
 
-        GameObject left = GameObject.FindGameObjectWithTag("Left");
+        /*GameObject left = GameObject.FindGameObjectWithTag("Left");
         if(left != null)
         {
             leftPosition = left.transform.position;
             leftRotation = left.transform.rotation;
             leftScale = left.transform.localScale;
-        }
+        }*/
 
-        if (Center != null && SceneName == "6_1")
-        {
-            centerPosition = Center.transform.position;
-            centerRotation = Center.transform.rotation;
-            centerScale = Center.transform.localScale;
-        }
+        //if (Center != null && SceneName == "6_1")
+        //{
+        //    centerPosition = Center.transform.position;
+        //    centerRotation = Center.transform.rotation;
+        //    centerScale = Center.transform.localScale;
+        //}
     }
 
     //private void HandleSceneOperation(string SceneName)

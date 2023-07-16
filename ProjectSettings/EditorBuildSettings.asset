@@ -58,13 +58,16 @@ EditorBuildSettings:
     guid: 14ea8aaab6668f6449e9a6344daeb610
   - enabled: 1
     path: Assets/Scenes/7_1.unity
-    guid: 3ae50372a08ba3242b2e3f7dc5a74c6d
+    guid: 6fcbd190f60bcb24791658088306dc89
   - enabled: 1
-    path: 
-    guid: 705ccb405bb3fd54db56ed24867c79b9
+    path: Assets/Scenes/7_1.unity
+    guid: 6fcbd190f60bcb24791658088306dc89
   - enabled: 1
     path: Assets/Scenes/7_2.unity
-    guid: 1900d5d6a62452b49ae1daad3effca88
+    guid: 2bdc07dddcbc0f44b83e6e42022d88c6
+  - enabled: 1
+    path: Assets/Scenes/7_3.unity
+    guid: 92ba8b72743b7154685b44af7844d314
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e1c4377e29d6f344c8d58b1b9b26be60, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 627830914200f8c4fb4d022b8b211de8, type: 2}

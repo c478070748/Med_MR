@@ -75,4 +75,9 @@ public class ButtonClick_6_1 : MonoBehaviour
     {
         sceneLoadManager.LoadOrUnloadScene("7_2");
     }
+
+    public void button7()
+    {
+        sceneLoadManager.LoadOrUnloadScene("7_3");
+    }
 }

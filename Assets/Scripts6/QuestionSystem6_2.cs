@@ -29,13 +29,15 @@ public class QuestionSystem6_2 : MonoBehaviour
     private EventTriggle6_2 eventTriggle;
 
 
-    public Vector2 cutCenter;//½ØÍ¼ÖÐÐÄ
+    public Vector2 cutCenter;//ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½
 
-    public float cutLen;//½ØÍ¼±ß³¤
+    public float cutLen;//ï¿½ï¿½Í¼ï¿½ß³ï¿½
 
-    public Camera lookDownCamera;//¸©î«ÉãÏñ»ú
+    public Camera lookDownCamera;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     Vector3 originPos;
+
+    public bool isRotation = false;
 
     void Start()
     {
@@ -45,17 +47,17 @@ public class QuestionSystem6_2 : MonoBehaviour
 
         target.SetActive(false);
 
-        //ÅÐ¶ÏÊÇ·ñ´æÔÚÄ³¸öÎÄ¼þ¼Ð
+        //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
         if (Directory.Exists(localPath))
         {
             DirectoryInfo direction = new DirectoryInfo(localPath);
-            files = direction.GetFiles("*.jpg");        //¼ÓÔØÊ²Ã´ÀàÐÍµÄÎÄ¼þ
+            files = direction.GetFiles("*.jpg");        //ï¿½ï¿½ï¿½ï¿½Ê²Ã´ï¿½ï¿½ï¿½Íµï¿½ï¿½Ä¼ï¿½
             //Debug.Log(files.Length);
 
             total = files.Length;
             textures = new Texture2D[total];
 
-            //localPath + "/" + files[index].Name   : ÓÃÓÚµÃµ½ÎÄ¼þµÄÂ·¾¶
+            //localPath + "/" + files[index].Name   : ï¿½ï¿½ï¿½ÚµÃµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -66,7 +68,7 @@ public class QuestionSystem6_2 : MonoBehaviour
 
         }
 
-        //¼ô²ÃCTÍ¼
+        //ï¿½ï¿½ï¿½CTÍ¼
         MeshFilter meshFilter = plane.GetComponent<MeshFilter>();
         Vector2[] uvs = new Vector2[meshFilter.mesh.vertices.Length];
         uvs[0] = new Vector2(cutCenter.x - cutLen / 2, cutCenter.y - cutLen / 2);
@@ -85,7 +87,7 @@ public class QuestionSystem6_2 : MonoBehaviour
         //vertice[3] = origin + new Vector3(cutCenter.x + cutLen / 2, cutCenter.y + cutLen / 2, 0);
         //meshFilter.mesh.vertices = vertice;
 
-        Vector2 modelOffset = (cutCenter - new Vector2(0.5f, 0.5f)) / cutLen;//Ä£ÐÍÆ«ÒÆÁ¿
+        Vector2 modelOffset = (cutCenter - new Vector2(0.5f, 0.5f)) / cutLen;//Ä£ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½
 
         target.transform.SetParent(plane.transform);
 
@@ -102,7 +104,7 @@ public class QuestionSystem6_2 : MonoBehaviour
         //Debug.Log(vertice[2]);
         //Debug.Log(vertice[3]);
 
-        //ÉèÖÃ¸©î«ÉãÏñ»ú²ÎÊý
+        //ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         float y = plane.transform.localScale.x + 60;
         //Debug.Log(y);
         lookDownCamera.transform.localPosition += new Vector3(0, y, 0);
@@ -113,17 +115,17 @@ public class QuestionSystem6_2 : MonoBehaviour
     IEnumerator Load(string url, int i)
     {
         double startTime = (double)Time.time;
-        //ÇëÇóWWW
+        //ï¿½ï¿½ï¿½ï¿½WWW
         WWW www = new WWW(url);
 
         yield return www;
         if (www != null && string.IsNullOrEmpty(www.error))
         {
-            //»ñÈ¡Texture
+            //ï¿½ï¿½È¡Texture
             textures[i] = www.texture;
 
             startTime = (double)Time.time - startTime;
-            //Debug.Log("www¼ÓÔØÓÃÊ± £º " + startTime);
+            //Debug.Log("wwwï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê± ï¿½ï¿½ " + startTime);
 
         }
 
@@ -152,6 +154,7 @@ public class QuestionSystem6_2 : MonoBehaviour
     void setQuestion(int index)
     {
         plane.GetComponent<GrabMapping>()?.CloseMapping();
+        plane.GetComponent<GrabMapping7_2>()?.CloseMapping();
 
         //Debug.Log(questionList[index]);
         plane.GetComponent<Renderer>().material.SetTexture("_MainTex", textures[questionList[index]]);
@@ -171,18 +174,23 @@ public class QuestionSystem6_2 : MonoBehaviour
 
         lookDownCamera.transform.SetParent(transform.parent);
 
+        if (isRotation)
+        {
+            target.transform.SetParent(plane.transform);
 
-        target.transform.SetParent(plane.transform);
-
-        float x = 0;
-        float y = 0;
-        float z = Random.Range(0, 360);
-        plane.transform.Rotate(new Vector3(x, y, z));
+            float x = 0;
+            float y = 0;
+            float z = Random.Range(0, 360);
+            plane.transform.Rotate(new Vector3(x, y, z));
 
 
-        target.transform.SetParent(transform);
+            target.transform.SetParent(transform);
+        }
+        
 
         plane.GetComponent<GrabMapping>()?.UpdateStatus(questionList[curIndex]);
+
+        plane.GetComponent<GrabMapping7_2>()?.UpdateStatus(questionList[curIndex]);
     }
 
     public void commit()
@@ -228,6 +236,8 @@ public class QuestionSystem6_2 : MonoBehaviour
             Vector3 endPos = originPos + direction * offset;
 
             plane.GetComponent<GrabMapping>()?.Init(originPos.y, endPos.y);
+
+            plane.GetComponent<GrabMapping7_2>()?.Init(originPos.y, endPos.y);
 
 
             eventTriggle.OnStart();
